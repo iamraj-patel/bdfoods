@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    
+    <title>BD Foods | Premium Convenience & Sunoco</title>
+    <meta name="description" content="BD Foods in Brunswick, GA. Premium Sunoco fuel, high-quality snacks, and an upcoming fast-bake McLane pizza hub.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛽</text></svg>">
+    <link rel="alternate icon" href="image/favicon.ico">
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
+
+    <style>
+        /* --- Modern Design System --- */
+        :root {
+            --brand-blue: #0A192F;
+            --brand-yellow: #FBBF24;
+            --brand-yellow-glow: rgba(251, 191, 36, 0.4);
+            --brand-red: #EF4444;
+            --bg-color: #F8FAFC;
+            --surface-color: #FFFFFF;
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 999px;
+            
+            --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 20px var(--brand-yellow-glow);
+            
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --container: min(1200px, 90vw);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: var(--container);
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-pill);
+            z-index: 1000;
+            padding: 1rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+
+        .logo { display: flex; flex-direction: column; text-decoration: none; }
+        .logo h1 { color: var(--brand-yellow); font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 800; line-height: 1.1; }
+        .logo span { color: #E2E8F0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+
+        nav ul { display: flex; gap: 2.5rem; list-style: none; }
+        nav a { color: #FFFFFF; text-decoration: none; font-weight: 500; font-size: 0.95rem; position: relative; padding: 0.5rem 0; }
+        nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brand-yellow); transition: var(--transition); }
+        nav a:hover { color: var(--brand-yellow); }
+        nav a:hover::after { width: 100%; }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 40px;
+            background-color: var(--brand-blue);
+        }
+
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.4; z-index: 1;
+        }
+
+        .hero-gradient { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,25,47,0.95) 0%, rgba(10,25,47,0.6) 100%); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; max-width: 800px; animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .hero-badge { display: inline-block; background: rgba(251, 191, 36, 0.15); color: var(--brand-yellow); padding: 0.5rem 1.2rem; border-radius: var(--radius-pill); font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem; border: 1px solid rgba(251, 191, 36, 0.3); backdrop-filter: blur(4px); text-transform: uppercase; }
+        .hero h2 { color: #FFFFFF; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .hero p { color: #CBD5E1; font-size: clamp(1.1rem, 2.5vw, 1.25rem); margin-bottom: 2.5rem; max-width: 600px; margin-inline: auto; }
+        
+        .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--brand-yellow); color: var(--brand-blue); padding: 1rem 2.5rem; border-radius: var(--radius-pill); font-weight: 700; font-size: 1.1rem; text-decoration: none; transition: var(--transition); box-shadow: var(--shadow-glow); }
+        .btn:hover { transform: translateY(-3px) scale(1.02); background: #FDE047; box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
+
+        /* --- Sections Layout --- */
+        section { padding: clamp(4rem, 8vw, 8rem) 0; width: var(--container); margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: clamp(3rem, 5vw, 4rem); }
+        .section-header h3 { font-size: clamp(2rem, 4vw, 3rem); color: var(--brand-blue); font-weight: 800; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* --- Features Grid --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .feature-card { background: var(--surface-color); padding: 3rem 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); transition: var(--transition); border: 1px solid rgba(226, 232, 240, 0.6); text-align: center; position: relative; overflow: hidden; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: rgba(251, 191, 36, 0.3); }
+        .icon-wrapper { width: 72px; height: 72px; background: rgba(10, 25, 47, 0.04); color: var(--brand-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; transition: var(--transition); }
+        .feature-card:hover .icon-wrapper { background: var(--brand-blue); color: var(--brand-yellow); transform: scale(1.1); }
+        .feature-card h4 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--brand-blue); font-weight: 700; }
+
+        /* --- INTERACTIVE DEALS GRID --- */
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .deal-card {
+            position: relative;
+            background: var(--surface-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            aspect-ratio: 16 / 9; 
+            cursor: pointer;
+            border: 1px solid rgba(226, 232, 240, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hover Overlay to tell users they can click */
+        .deal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 25, 47, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+        }
+
+        .deal-card:hover .deal-overlay {
+            opacity: 1;
+        }
+
+        .deal-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--brand-yellow);
+        }
+
+        .deal-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .fallback-ui {
+            position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #F8FAFC, #E2E8F0); color: var(--text-secondary); z-index: 1;
+        }
+        .fallback-ui code { background: rgba(255,255,255,0.8); padding: 0.4rem 0.8rem; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--brand-red); font-family: monospace; }
+
+        /* --- LIGHTBOX MODAL STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(10, 25, 47, 0.95); 
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {transform: scale(0.8); opacity: 0;}
+            to {transform: scale(1); opacity: 1;}
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: var(--brand-yellow);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* --- Pizza Section --- */
+        .pizza-section { background: var(--brand-blue); border-radius: var(--radius-lg); padding: clamp(3rem, 5vw, 5rem); color: #FFFFFF; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; position: relative; overflow: hidden; }
+        .pizza-content { position: relative; z-index: 2; }
+        .pizza-content h3 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem; color: #FFFFFF; line-height: 1.1; }
+        .pizza-badge { display: inline-block; background: var(--brand-red); color: #FFFFFF; padding: 0.4rem 1.2rem; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.5rem; }
+        
+        .menu-board { position: relative; z-index: 2; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border-radius: var(--radius-lg); padding: 2.5rem; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.15); }
+        .menu-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .menu-item:first-child { padding-top: 0; }
+        .menu-item .details strong { display: block; font-size: 1.15rem; color: #F8FAFC; }
+        .menu-item .price { font-size: 1.35rem; font-weight: 800; color: var(--brand-yellow); background: rgba(251, 191, 36, 0.1); padding: 0.4rem 0.8rem; border-radius: var(--radius-md); }
+
+        /* --- Footer & Contact --- */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; background: var(--surface-color); padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); margin-bottom: 4rem; border: 1px solid rgba(226, 232, 240, 0.6); }
+        .contact-block h5 { color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 1rem; }
+        .contact-block p { font-size: 1.15rem; font-weight: 500; color: var(--brand-blue); }
+        .map-btn { display: inline-block; margin-top: 1.2rem; color: var(--brand-blue); text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--brand-yellow); padding-bottom: 4px; }
+        
+        footer { text-align: center; padding: 2.5rem; border-top: 1px solid #E2E8F0; color: var(--text-secondary); font-size: 0.95rem; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Mobile Responsive Rules --- */
+        @media (max-width: 1024px) {
+            .pizza-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
+            .contact-grid { padding: 3rem 2rem; }
+        }
+        @media (max-width: 900px) {
+            header { width: 95vw; padding: 1rem 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            header { flex-direction: column; border-radius: var(--radius-lg); gap: 1.2rem; padding: 1.5rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+            .deals-grid { grid-template-columns: 1fr; }
+            .contact-grid { padding: 2.5rem 1.5rem; grid-template-columns: 1fr; }
+            .menu-board { padding: 1.5rem; }
+            .feature-card { padding: 2rem 1.5rem; }
+            .deal-card { aspect-ratio: 4 / 3; } 
+            
+            /* Hide hover overlay on mobile so they just tap directly */
+            .deal-overlay { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <h1>BD Foods</h1>
+            <span>Premium Stop</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#about">Experience</a></li>
+                <li><a href="#deals">Monthly Deals</a></li>
+                <li><a href="#pizza">Pizza Hub</a></li>
+                <li><a href="#contact">Location</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <span class="hero-badge">Brunswick, GA</span>
+            <h2>Refuel. Refresh. Recharge.</h2>
+            <p>Experience the cleanest stop in town. Top-tier Sunoco fuel outside, premium snacks, and hot food waiting for you inside.</p>
+            <a href="#contact" class="btn">Get Directions</a>
+        </div>
+    </main>
+
+    <section id="about">
+        <div class="section-header">
+            <h3>More Than a Gas Station</h3>
+            <p>Located on Altama Avenue, we are dedicated to providing a premium convenience experience for locals and travelers alike.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-wrapper">⛽</div>
+                <h4>Sunoco Fuel</h4>
+                <p>Keep your engine at peak performance with Unleaded, Midgrade, and Premium high-efficiency fuel options optimized for your vehicle.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrapper">☕</div>
+                <h4>Premium Refreshments</h4>
+                <p>Jumpstart your day with our premium coffee bar, ice-cold energy drinks, and fresh grab-and-go snacks carefully curated for quality.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrapper">🎫</div>
+                <h4>Daily Essentials</h4>
+                <p>From local lottery tickets to secure ATM access and everyday grocery essentials, we have exactly what you need right now.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="deals">
+        <div class="section-header">
+            <h3>Exclusive In-Store Deals</h3>
+            <p>Tap or click any image to enlarge and read the details.</p>
+        </div>
+
+        <div class="deals-grid">
+            <div class="deal-card" onclick="openModal('image/image1.jpg', 'Newport Deal')">
+                <div class="deal-overlay">🔍 Click to Enlarge</div>
+                <div class="fallback-ui"><code>image/image1.jpg</code></div>
+                <img src="image/image1.jpg" alt="Newport Deal" onerror="this.style.opacity='0'; this.style.zIndex='-1';">
+            </div>
+            
+            <div class="deal-card" onclick="openModal('image/image2.jpg', 'Summer Drink Special')">
+                <div class="deal-overlay">🔍 Click to Enlarge</div>
+                <div class="fallback-ui"><code>image/image2.jpg</code></div>
+                <img src="image/image2.jpg" alt="Summer Drink Special" onerror="this.style.opacity='0'; this.style.zIndex='-1';">
+            </div>
+
+            <div class="deal-card" onclick="openModal('image/image3.jpg', 'Marlboro Promo')">
+                <div class="deal-overlay">🔍 Click to Enlarge</div>
+                <div class="fallback-ui"><code>image/image3.jpg</code></div>
+                <img src="image/image3.jpg" alt="Marlboro Promo" onerror="this.style.opacity='0'; this.style.zIndex='-1';">
+            </div>
+        </div>
+    </section>
+
+    <section id="pizza">
+        <div class="pizza-section">
+            <div class="pizza-content">
+                <span class="pizza-badge">Coming Soon</span>
+                <h3>Hot & Fresh Pizza Hub</h3>
+                <p>We are partnering with the nationwide supply chain logisticians at <strong>McLane</strong> to bring you a fast-bake pizza hub. Get ready for hot, cheesy, gourmet slices baked fresh while you fill your tank and grab your daily essentials.</p>
+            </div>
+            
+            <div class="menu-board">
+                <div class="menu-item">
+                    <div class="details">
+                        <strong>Signature Pepperoni</strong>
+                        <span style="color: #94A3B8; font-size: 0.9rem; display: block; margin-top: 4px;">Loaded generously with premium sliced pepperoni</span>
+                    </div>
+                    <div class="price">$11.99</div>
+                </div>
+                <div class="menu-item">
+                    <div class="details">
+                        <strong>Three-Cheese Medley</strong>
+                        <span style="color: #94A3B8; font-size: 0.9rem; display: block; margin-top: 4px;">Classic mozzarella, provolone, and rich parmesan</span>
+                    </div>
+                    <div class="price">$9.99</div>
+                </div>
+                <div class="menu-item">
+                    <div class="details">
+                        <strong>The Supreme Engine</strong>
+                        <span style="color: #94A3B8; font-size: 0.9rem; display: block; margin-top: 4px;">Packed with fresh artisan meats and crisp vegetables</span>
+                    </div>
+                    <div class="price">$13.99</div>
+                </div>
+                <div class="menu-item">
+                    <div class="details">
+                        <strong>Hot Single Slice</strong>
+                        <span style="color: #94A3B8; font-size: 0.9rem; display: block; margin-top: 4px;">Grab and go rapidly (Any available style)</span>
+                    </div>
+                    <div class="price">$2.99</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="padding-bottom: 2rem;">
+        <div class="contact-grid">
+            <div class="contact-block">
+                <h5>Location Coordinates</h5>
+                <p>6090 Altama Ave<br>Brunswick, GA 31525</p>
+                <a href="https://maps.google.com/?q=6090+Altama+Ave,+Brunswick,+GA+31525" target="_blank" class="map-btn">Open in Google Maps →</a>
+            </div>
+            <div class="contact-block">
+                <h5>Hours of Operation</h5>
+                <p>Open Daily<br>5:00 AM - 11:00 PM</p>
+            </div>
+            <div class="contact-block">
+                <h5>Available Amenities</h5>
+                <p>Sunoco Fuel • Secure ATM • Coffee Bar<br>State Lottery • McLane Pizza (Soon)</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 BD Foods & Sunoco Station. All rights reserved.</p>
+        </footer>
+    </section>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="expandedImg" onclick="event.stopPropagation();">
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("expandedImg");
+
+        // Function to open the modal and set the image source
+        function openModal(imageSrc, altText) {
+            modal.style.display = "block";
+            modalImg.src = imageSrc;
+            modalImg.alt = altText;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+            modalImg.src = ""; // Clear image to prevent flash on next load
+        }
+
+        // Allow closing the modal by pressing the 'Escape' key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
